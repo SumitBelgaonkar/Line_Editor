@@ -1,0 +1,204 @@
+SIMPLE LINE EDITOR - HELP FILE
+
+Overview
+--------
+The Simple Line Editor is a command-line text editor written in C.
+It allows the user to create, view, modify, save, and load a small
+text document directly from the terminal.
+
+Each line is assigned a line number starting from 1.
+
+
+1. INSERT LINE
+--------------
+
+Purpose:
+Adds a new line of text at a specified line number. Existing lines
+from that position onward are shifted down.
+
+Usage:
+    1. Insert line
+    Enter line number to insert at: 2
+    Enter text: This is a new line
+
+Example:
+
+Before:
+    1: Hello
+    2: Welcome to C
+    3: Goodbye
+
+Insert at line 2:
+    This is a new line
+
+After:
+    1: Hello
+    2: This is a new line
+    3: Welcome to C
+    4: Goodbye
+
+A line can also be inserted at the end by entering lineCount + 1.
+
+
+2. DELETE LINE
+--------------
+
+Purpose:
+Removes a line from the document. All lines below it are shifted
+upward.
+
+Usage:
+    2. Delete line
+    Enter line number to delete: 2
+
+Example:
+
+Before:
+    1: Hello
+    2: This is a new line
+    3: Welcome to C
+
+Delete line 2.
+
+After:
+    1: Hello
+    2: Welcome to C
+
+The memory occupied by the deleted line is released using free().
+
+
+3. DISPLAY DOCUMENT
+-------------------
+
+Purpose:
+Displays all currently stored lines along with their line numbers.
+
+Usage:
+    3. Display document
+
+Example output:
+    ----- Document -----
+    1: Hello
+    2: Welcome to C
+    3: This is my line editor
+    --------------------
+
+If there are no lines:
+    Document is empty.
+
+
+4. SAVE FILE
+------------
+
+Purpose:
+Saves the current document from memory into a text file.
+
+Usage:
+    4. Save file
+    Enter filename: document.txt
+
+Example:
+
+If the document contains:
+    1: Hello
+    2: Welcome to C
+    3: This is my line editor
+
+After saving to document.txt, the file contains:
+    Hello
+    Welcome to C
+    This is my line editor
+
+The file is opened in write mode, so existing contents are replaced.
+
+
+5. LOAD FILE
+------------
+
+Purpose:
+Reads a text file and loads its contents into the editor's memory.
+
+Usage:
+    5. Load file
+    Enter filename: document.txt
+
+Example:
+
+If document.txt contains:
+    Hello
+    Welcome to C
+    This is my line editor
+
+After loading:
+    1: Hello
+    2: Welcome to C
+    3: This is my line editor
+
+Loading a file first clears the existing document from memory.
+
+
+6. EXIT
+-------
+
+Purpose:
+Closes the line editor and releases dynamically allocated memory.
+
+Usage:
+    6. Exit
+
+Example output:
+    Exiting editor...
+
+Before exiting, the program calls free() on all stored lines to
+prevent memory leaks.
+
+
+COMMAND SUMMARY
+---------------
+
+Option    Command              Purpose
+1         Insert line          Add a line at a specific position
+2         Delete line          Remove a specific line
+3         Display document     Show all lines with line numbers
+4         Save file            Save document to a .txt file
+5         Load file            Load a .txt file into memory
+6         Exit                 Close editor and free memory
+
+
+EXAMPLE SESSION
+---------------
+
+    =================================
+           SIMPLE LINE EDITOR
+    =================================
+
+    1. Insert line
+    2. Delete line
+    3. Display document
+    4. Save file
+    5. Load file
+    6. Exit
+
+    Enter your choice: 1
+    Enter line number to insert at (1-1): 1
+    Enter text: Hello World
+    Line inserted successfully.
+
+    Enter your choice: 1
+    Enter line number to insert at (1-2): 2
+    Enter text: Learning C Programming
+    Line inserted successfully.
+
+    Enter your choice: 3
+
+    ----- Document -----
+    1: Hello World
+    2: Learning C Programming
+    --------------------
+
+    Enter your choice: 4
+    Enter filename: document.txt
+    Document saved successfully.
+
+    Enter your choice: 6
+    Exiting editor...
